@@ -106,7 +106,7 @@ http-vs-https-security-demo
 └── ansible
     ├── inventory.ini
     └── deploy.yml
-
+    
 ## Docker Deployment
 
 Build HTTP image:
