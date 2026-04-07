@@ -201,4 +201,5 @@ HTTP vs HTTPS Security Demonstration
 Payment Gateway Tampering Simulation
 Docker & Ansible Deployment
 
+pip install --user ansible
 ansible-playbook -i ansible/inventory.ini deploy.yml
