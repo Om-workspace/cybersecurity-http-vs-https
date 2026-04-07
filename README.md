@@ -104,8 +104,8 @@ http-vs-https-security-demo
 │       └── attack.html
 │
 └── ansible
-├── inventory.ini
-└── deploy.yml
+    ├── inventory.ini
+    └── deploy.yml
 
 ## Docker Deployment
 
