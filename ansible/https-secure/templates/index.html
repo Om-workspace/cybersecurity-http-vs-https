@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTTPS Secure Course Store</title>
+
+<script>
+function calculateTotal() {
+    let total = 0;
+    let selected = [];
+
+    document.querySelectorAll('input[name="course"]:checked')
+    .forEach((el)=>{
+        total += parseInt(el.value);
+        selected.push(el.parentElement.innerText);
+    });
+
+    document.getElementById("total").innerText = total;
+    document.getElementById("total_input").value = total;
+
+    document.getElementById("selected").innerHTML =
+        selected.map(s => "<li>"+s+"</li>").join("");
+}
+</script>
+
+</head>
+
+<body>
+
+<div style="background:#222;color:white;padding:10px;">
+<a href="/" style="color:white;margin-right:20px;">Home</a>
+<a href="/about" style="color:white;">Security Details</a>
+</div>
+
+<h1>HTTPS Secure Course Store</h1>
+<h3>(This site is protected using secure logic)</h3>
+
+<div style="background:green;color:white;padding:15px;font-size:20px;">
+🔒 This website is running on HTTPS (Secure) — Data is encrypted and protected
+</div>
+
+<div style="border:2px solid green;padding:10px;margin:10px 0;">
+<h3>Security Status: HTTPS (Protected)</h3>
+<ul>
+<li>Encryption: Yes</li>
+<li>SQL Injection: Blocked</li>
+<li>Cart Tampering: Blocked</li>
+<li>Payment Data Leak: Protected</li>
+<li>MITM Attack: Prevented</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>Login</h2>
+
+<form method="POST" action="/login">
+Username:
+<input type="text" name="username">
+
+Password:
+<input type="text" name="password">
+
+<button type="submit">Login</button>
+</form>
+
+<hr>
+
+<div style="border:2px solid green;padding:10px;margin-top:10px;">
+<h3>SQL Injection Protection (HTTPS Secure)</h3>
+
+<p>SQL injection attempts are blocked using parameterized queries.</p>
+
+<b>Try Attack:</b><br>
+Username: admin <br>
+Password: ' OR '1'='1
+
+<p>Login will fail because query is secured.</p>
+</div>
+
+<h2>Select Courses</h2>
+
+<form method="POST" action="/pay">
+
+<input type="checkbox" name="course" value="1999" onchange="calculateTotal()"> Python for Beginners - ₹1999 <br>
+<input type="checkbox" name="course" value="2999" onchange="calculateTotal()"> Ethical Hacking Basics - ₹2999 <br>
+<input type="checkbox" name="course" value="3999" onchange="calculateTotal()"> Data Science Bootcamp - ₹3999 <br>
+<input type="checkbox" name="course" value="3499" onchange="calculateTotal()"> Web Development Full Stack - ₹3499 <br>
+<input type="checkbox" name="course" value="4499" onchange="calculateTotal()"> Machine Learning A-Z - ₹4499 <br>
+<input type="checkbox" name="course" value="2599" onchange="calculateTotal()"> Cyber Security Fundamentals - ₹2599 <br>
+<input type="checkbox" name="course" value="2299" onchange="calculateTotal()"> Docker & Kubernetes - ₹2299 <br>
+<input type="checkbox" name="course" value="1999" onchange="calculateTotal()"> Java Masterclass - ₹1999 <br>
+<input type="checkbox" name="course" value="2799" onchange="calculateTotal()"> React Complete Guide - ₹2799 <br>
+<input type="checkbox" name="course" value="1499" onchange="calculateTotal()"> SQL Injection Mastery - ₹1499 <br>
+
+<hr>
+
+<h2>Cart Total: ₹<span id="total">0</span></h2>
+
+<input type="hidden" name="total" id="total_input" value="0">
+
+<hr>
+
+<h2>Selected Courses</h2>
+<ul id="selected"></ul>
+
+<hr>
+
+<h2>Secure Payment Gateway 🔒</h2>
+
+Name:
+<input type="text" name="name"><br><br>
+
+Card Number:
+<input type="text" name="card"><br><br>
+
+CVV:
+<input type="text" name="cvv"><br><br>
+
+<button type="submit">Pay Securely</button>
+
+</form>
+
+</body>
+</html>

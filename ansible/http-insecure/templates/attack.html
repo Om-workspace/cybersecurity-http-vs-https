@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Transaction Result</title>
+</head>
+
+<body>
+
+{% if status == "hacked" %}
+
+<h3 style="color:red;">Network Attack Simulation</h3>
+
+<p>Step 1: User selected courses</p>
+<p>Step 2: HTTP request sent without encryption</p>
+<p>Step 3: Attacker intercepted request</p>
+<p>Step 4: Amount modified in transit</p>
+<p>Step 5: Server accepted tampered value</p>
+
+<hr>
+
+<b>Attack Type:</b> Man-in-the-Middle (MITM)<br>
+<b>Protocol Used:</b> HTTP<br>
+<b>Result:</b> Transaction Compromised
+
+<hr>
+
+<h1 style="color:red;">⚠ Payment Compromised</h1>
+
+<p><b>Transaction ID:</b> {{txn}}</p>
+<p><b>Time:</b> {{time}}</p>
+
+<p><b>Amount Charged:</b> ₹{{total}}</p>
+<p><b>Card Exposed:</b> {{card}}</p>
+
+<p>Transaction was modified by attacker.</p>
+
+{% else %}
+
+<h3 style="color:green;">Secure Network Communication</h3>
+
+<p>Step 1: User selected courses</p>
+<p>Step 2: HTTPS encrypted request sent</p>
+<p>Step 3: Attacker unable to read traffic</p>
+<p>Step 4: Tampering attempt blocked</p>
+<p>Step 5: Server recalculated amount</p>
+
+<hr>
+
+<b>Protection:</b> TLS Encryption<br>
+<b>Protocol Used:</b> HTTPS<br>
+<b>Result:</b> Transaction Secure
+
+<hr>
+
+<h1 style="color:green;">✅ Secure Transaction</h1>
+
+<p><b>Transaction ID:</b> {{txn}}</p>
+<p><b>Time:</b> {{time}}</p>
+
+<p><b>Amount Charged:</b> ₹{{total}}</p>
+<p><b>Card Data:</b> {{card}}</p>
+
+<p>Transaction securely processed.</p>
+
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Transaction Result</title>
+</head>
+
+<body>
+
+{% if status == "hacked" %}
+
+<h1 style="color:red;">⚠ Payment Compromised</h1>
+
+<p>Transaction ID: {{txn}}</p>
+<p>Time: {{time}}</p>
+
+<p>Amount Charged: ₹{{total}}</p>
+<p>Card Exposed: {{card}}</p>
+
+<p>Transaction was modified by attacker.</p>
+
+{% else %}
+
+<h1 style="color:green;">✅ Secure Transaction</h1>
+
+<h3 style="color:green;">Secure Network Communication</h3>
+
+<p>Step 1: User selected courses</p>
+<p>Step 2: HTTPS encrypted request sent</p>
+<p>Step 3: Attacker unable to read traffic</p>
+<p>Step 4: Tampering attempt blocked</p>
+<p>Step 5: Server recalculated amount</p>
+
+<hr>
+
+<b>Protection:</b> TLS Encryption  
+<b>Protocol Used:</b> HTTPS  
+<b>Result:</b> Transaction Secure
+
+<p>Transaction ID: {{txn}}</p>
+<p>Time: {{time}}</p>
+
+<p>Amount Charged: ₹{{total}}</p>
+<p>Card Data: {{card}}</p>
+
+<p>Transaction securely processed.</p>
+
+{% endif %}
+
+</body>
+</html>

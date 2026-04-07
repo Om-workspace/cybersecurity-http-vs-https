@@ -1,0 +1,23 @@
+- name: Deploy HTTP vs HTTPS Security Demo
+  hosts: localhost
+  tasks:
+
+    - name: Build HTTP image
+      command: docker build -t http-insecure ./http-insecure
+
+    - name: Build HTTPS image
+      command: docker build -t https-secure ./https-secure
+
+    - name: Stop old HTTP container
+      command: docker rm -f http
+      ignore_errors: yes
+
+    - name: Stop old HTTPS container
+      command: docker rm -f https
+      ignore_errors: yes
+
+    - name: Run HTTP container
+      command: docker run -d -p 5000:5000 --name http http-insecure
+
+    - name: Run HTTPS container
+      command: docker run -d -p 5001:5000 --name https https-secure
