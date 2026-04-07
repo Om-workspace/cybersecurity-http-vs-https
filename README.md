@@ -200,3 +200,5 @@ Cyber Security Mini Project
 HTTP vs HTTPS Security Demonstration
 Payment Gateway Tampering Simulation
 Docker & Ansible Deployment
+
+ansible-playbook -i ansible/inventory.ini deploy.yml
