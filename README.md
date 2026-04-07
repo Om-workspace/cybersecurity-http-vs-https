@@ -11,7 +11,9 @@ Demonstrate payment information leakage
 Demonstrate SQL Injection login bypass
 Implement HTTPS using SSL certificate
 Show secure encrypted communication
+
 🧪 Attack Scenarios Demonstrated
+
 1. Cart Price Tampering (HTTP)
 
 Attacker modifies total amount before payment
@@ -52,7 +54,9 @@ Cart tampering prevented
 Payment details secured
 MITM attack fails
 Secure authentication
+
 🏗 Project Structure
+
 http-vs-https-security-demo
 │
 ├── http-insecure
@@ -151,7 +155,9 @@ HTTP Protocol
 HTTPS / TLS
 SQL Injection
 MITM Attack Simulation
+
 📊 Demonstration Flow
+
 HTTP Demo
 Select courses
 Add to cart
@@ -164,6 +170,7 @@ Add to cart
 Attempt tampering
 Request encrypted
 Attack blocked
+
 ✅ Conclusion
 
 The project demonstrates that HTTP websites are vulnerable to attacks such as cart tampering, SQL injection, and payment data interception. After implementing HTTPS using SSL certificates, all communications are encrypted and attacks are prevented. This proves that HTTPS ensures confidentiality, integrity, and authentication.
