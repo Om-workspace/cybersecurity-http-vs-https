@@ -1,67 +1,94 @@
-🔐 HTTP vs HTTPS Security Demonstration with Payment Tampering & SQL Injection
+# HTTP vs HTTPS Security Demonstration
 
-This project demonstrates the security risks of HTTP-based websites and how HTTPS with SSL protects against cyber attacks.
-A course-selling website is developed where attackers can tamper cart values, intercept payment data, and perform SQL Injection in the insecure version, while the HTTPS version prevents these attacks.
+Payment Tampering • SQL Injection • MITM • Docker • Ansible
 
-🎯 Objectives
-Demonstrate HTTP vulnerability
-Show Man-in-the-Middle (MITM) attack
-Demonstrate cart value tampering
-Demonstrate payment information leakage
-Demonstrate SQL Injection login bypass
-Implement HTTPS using SSL certificate
-Show secure encrypted communication
+## Overview
 
-🧪 Attack Scenarios Demonstrated
+This project demonstrates the security risks of HTTP-based websites and how HTTPS with SSL/TLS protects against cyber attacks.
+A course-selling platform is developed where attackers can tamper cart values, intercept payment data, and perform SQL injection in the insecure version, while the HTTPS version prevents these attacks. Both applications are containerized using Docker and deployed using Ansible.
 
-1. Cart Price Tampering (HTTP)
+## Objectives
 
-Attacker modifies total amount before payment
+* Demonstrate insecure HTTP communication
+* Show cart price tampering attack
+* Demonstrate payment data leakage
+* Demonstrate SQL injection login bypass
+* Simulate Man-in-the-Middle (MITM) attack
+* Implement HTTPS using SSL certificate
+* Secure transactions using TLS encryption
+* Containerize applications using Docker
+* Automate deployment using Ansible
 
+## Attack Scenarios Demonstrated
+
+### 1. Cart Value Tampering (HTTP)
+
+Attacker modifies total cart value before payment
 Example:
-
 Actual Total = ₹4598
 Tampered Total = ₹10
-
 Server accepts modified value in HTTP version.
 
-2. Payment Information Leakage (HTTP)
+### 2. Payment Data Leakage (HTTP)
 
-Attacker intercepts:
+Sensitive information transmitted in plain text:
 
-Card Number
-CVV
-Name
-Amount
+* Card number
+* CVV
+* User name
+* Amount
 
-Data transmitted in plain text over HTTP.
+Attacker can intercept this data.
 
-3. SQL Injection Attack
+### 3. SQL Injection Attack
 
 Login bypass using:
-
 username: admin
 password: ' OR '1'='1
 
-This allows attacker unauthorized access.
+This allows unauthorized access.
 
-4. HTTPS Protection
+### 4. MITM Attack
 
-After enabling HTTPS with SSL:
+Attacker intercepts HTTP request and modifies:
+amount=4598 → amount=1
+Transaction manipulated successfully.
 
-Data encrypted using TLS
-Cart tampering prevented
-Payment details secured
-MITM attack fails
-Secure authentication
+### 5. HTTPS Protection
 
-🏗 Project Structure
+After enabling HTTPS:
+
+* Data encrypted
+* Cart tampering prevented
+* Payment secured
+* MITM blocked
+* Credentials protected
+
+## Demo Course Store
+
+The application simulates an online course marketplace with 10 courses:
+
+* Python for Beginners
+* Ethical Hacking Basics
+* Data Science Bootcamp
+* Web Development Full Stack
+* Machine Learning A-Z
+* Cyber Security Fundamentals
+* Docker & Kubernetes
+* Java Masterclass
+* React Complete Guide
+* SQL Injection Mastery
+
+Users can select courses, generate cart total, and proceed to payment.
+
+## Project Structure
 
 http-vs-https-security-demo
 │
 ├── http-insecure
 │   ├── app.py
 │   ├── users.db
+│   ├── Dockerfile
 │   └── templates
 │       ├── index.html
 │       └── attack.html
@@ -71,106 +98,105 @@ http-vs-https-security-demo
 │   ├── users.db
 │   ├── cert.pem
 │   ├── key.pem
+│   ├── Dockerfile
 │   └── templates
 │       ├── index.html
 │       └── attack.html
 │
-└── README.md
-🛒 Courses Available (Demo Store)
+└── ansible
+├── inventory.ini
+└── deploy.yml
 
-The website includes 10 courses:
+## Docker Deployment
 
-Python for Beginners
-Ethical Hacking Basics
-Data Science Bootcamp
-Web Development Full Stack
-Machine Learning A-Z
-Cyber Security Fundamentals
-Docker & Kubernetes
-Java Masterclass
-React Complete Guide
-SQL Injection Mastery
+Build HTTP image:
+docker build -t http-insecure ./http-insecure
 
-Users can add courses to cart and proceed to payment.
+Build HTTPS image:
+docker build -t https-secure ./https-secure
 
-🚨 HTTP Version (Insecure)
+Run HTTP container:
+docker run -d -p 5000:5000 http-insecure
 
-Vulnerabilities:
+Run HTTPS container:
+docker run -d -p 5443:5000 https-secure
 
-No encryption
-Cart price can be modified
-Payment data exposed
-SQL injection possible
-MITM attack successful
+## Ansible Deployment
 
-URL example:
+Run automated deployment:
+ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
 
+This playbook:
+
+* Builds docker images
+* Runs containers
+* Exposes ports
+* Deploys both environments
+
+## Access Applications
+
+HTTP (Insecure)
 http://localhost:5000
-🔐 HTTPS Version (Secure)
 
-Security features:
+HTTPS (Secure)
+https://localhost:5443
 
-SSL certificate
-TLS encryption
-Secure payment transmission
-Data integrity protection
-Attack detection page
+## Security Comparison
 
-URL example:
+Feature | HTTP | HTTPS
+Data Encryption | No | Yes
+Cart Tampering | Possible | Blocked
+SQL Injection | Possible | Prevented
+Payment Leakage | Yes | Encrypted
+MITM Attack | Successful | Failed
+SSL Certificate | No | Yes
 
-https://localhost:5000
-⚙️ Installation
+## Technologies Used
 
-Clone repository:
+* Python Flask
+* SQLite Database
+* HTML/CSS
+* OpenSSL
+* HTTP / HTTPS
+* TLS Encryption
+* SQL Injection
+* Docker
+* Ansible
 
-git clone https://github.com/yourusername/http-vs-https-security-demo.git
-▶ Run HTTP Version
-cd http-insecure
-pip install flask
-python app.py
-
-Open:
-
-http://localhost:5000
-▶ Run HTTPS Version
-
-Generate SSL certificate:
-
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
-
-Run:
-
-cd https-secure
-python app.py
-
-Open:
-
-https://localhost:5000
-🧠 Technologies Used
-Python Flask
-SQLite Database
-HTML/CSS
-OpenSSL
-HTTP Protocol
-HTTPS / TLS
-SQL Injection
-MITM Attack Simulation
-
-📊 Demonstration Flow
+## Demonstration Flow
 
 HTTP Demo
-Select courses
-Add to cart
-Modify total amount
-Payment processed
-Attack successful
+
+1. Login using SQL injection
+2. Select courses
+3. Generate cart value
+4. Tamper total amount
+5. Payment processed
+6. Attack successful
+
 HTTPS Demo
-Select courses
-Add to cart
-Attempt tampering
-Request encrypted
-Attack blocked
 
-✅ Conclusion
+1. Login securely
+2. Select courses
+3. Attempt tampering
+4. TLS encryption applied
+5. Attack blocked
+6. Secure payment
 
-The project demonstrates that HTTP websites are vulnerable to attacks such as cart tampering, SQL injection, and payment data interception. After implementing HTTPS using SSL certificates, all communications are encrypted and attacks are prevented. This proves that HTTPS ensures confidentiality, integrity, and authentication.
+## Learning Outcomes
+
+* Difference between HTTP and HTTPS
+* SSL/TLS implementation
+* Payment tampering attacks
+* SQL injection vulnerability
+* MITM attack simulation
+* Docker container deployment
+* Ansible automation
+* Secure web application design
+
+## Mini Project Type
+
+Cyber Security Mini Project
+HTTP vs HTTPS Security Demonstration
+Payment Gateway Tampering Simulation
+Docker & Ansible Deployment
